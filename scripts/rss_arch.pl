@@ -14,9 +14,9 @@ use LWP::Simple; #install perl https support
 # Configs
 
 $rssPage = "https://www.archlinux.org/feeds/news/";
-$numLines = 8;
+$numLines = 10;
 $maxTitleLenght = 60;
-$goto = '${goto 700}';
+$goto = '${goto 1200}';
 
 ###########################
 # Code

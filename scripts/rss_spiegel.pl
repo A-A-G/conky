@@ -10,14 +10,15 @@
 
 use LWP::Simple; #install perl https support
 use HTML::Entities; #german
+use Encode;
 
 ############################
 # Configs
 
-$rssPage = "https://www.subcentral.de/index.php?page=Feed&type=RSS2&boardID=182";
-$numLines = 10;
-$maxTitleLenght = 60;
-$goto = '${goto 1550}';
+$rssPage = "http://www.spiegel.de/schlagzeilen/index.rss";
+$numLines = 18;
+$maxTitleLenght = 90;
+$goto = '${goto 650}';
 
 ###########################
 # Code
@@ -32,7 +33,7 @@ my $pageCont = get($rssPage);
 $numLines--; #correcting count for loop
 $x = 0;
 foreach $line (@pageLines) {
- 	if($line !~ /SubCentral/){
+	if($line !~ /SPIEGEL ONLINE/){
 		if($line =~ /\<title\>/){ # Is a good line?
 			#print "- $line\n";
 			$lineCat = $line;
@@ -41,6 +42,7 @@ foreach $line (@pageLines) {
 			$lineCat =~ s/\[.{4,25}\]$//; # strip no-fun data ( [from blaaa] )
 			$lineCat = substr($lineCat, 0, $maxTitleLenght);
 			$lineCat = decode_entities($lineCat);
+			$lineCat = encode('UTF-8', $lineCat);
 			print "$goto$lineCat \n";
 			$x++;
 		}

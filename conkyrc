@@ -204,22 +204,28 @@ ${goto 40}${color2}${top_mem name 9}${color}${goto 200}${top_mem mem_res 9} ${go
 ${goto 40}${color2}${top_mem name 10}${color}${goto 200}${top_mem mem_res 10} ${goto 350}${color2}${top name 10}${color}${goto 510}${top cpu 10} %
 ${hr 2}\
 \
-# RSS
+# RSS 1
 \
 ${voffset -250}\
-${goto 700}${color slate grey}${font LED Mono:size=14}${rss https://www.archlinux.org/feeds/news/ 1 feed_title}${color}${font LED Mono:size=8}
-${execpi 60 /home/alex/.conky/conky/scripts/rss_arch.pl}${font}
-#${goto 700}${color slate grey}${font LED Mono:size=14}${rss https://www.subcentral.de/index.php?page=Feed&type=RSS2&boardID=182 1 feed_title}${color}${font LED Mono:size=8}
-${goto 700}${color slate grey}${font LED Mono:size=14}SubCentral.de${color}${font LED Mono:size=8}
-${execpi 60 /home/alex/.conky/conky/scripts/rss_subcentral.pl}${font}
+${goto 650}${color slate grey}${font LED Mono:size=14}${rss http://www.spiegel.de/schlagzeilen/index.rss 1 feed_title}${color}${font LED Mono:size=8}
+${execpi 60 /home/alex/.conky/conky/scripts/rss_spiegel.pl}${font}
 \
 # SYS
 \
-${voffset -270}\
+${voffset -265}\
 ${goto 1200}${font Open Sans:Bold:size=14}${color dodgerblue3}SYSTEM ${voffset -4}${hr 5}$color${font}
 ${goto 1200}${color slate grey}$sysname $kernel $machine ${alignr 39}${color slate grey}Uptime: ${color2}$uptime${color}
 ${goto 1200}${color slate grey}Intel® Core™ i5-4670K @ ${color2}${freq_g cpu0} GHz${color}${alignr 39}${color slate grey}Processes: ${color2}$processes
 ${goto 1200}${color slate grey}Load: ${color2}$loadavg ${alignr 39}${color slate grey}Running:   ${color2}$running_processes
 # nvidia plugin needed
 ${goto 1200}${color slate grey}${exec lspci | grep VGA | sed -e 's/^.*\[//g' -e 's/].*$//g' -e 's/ Rev.*$//g'}: ${color}GPU: ${color2}${nvidia gpufreq} Mhz ${color}CPU: ${color2}${nvidia memfreq} Mhz ${color7}${alignr 39}${nvidia temp}°C${color}
-
+${goto 1200}${voffset -10}${hr 1}${voffset -10}
+\
+# RSS 2
+\
+${goto 1200}${color slate grey}${font LED Mono:size=14}${rss https://www.archlinux.org/feeds/news/ 1 feed_title}${color}${font LED Mono:size=8}
+${execpi 60 /home/alex/.conky/conky/scripts/rss_arch.pl}${font}
+${voffset -182}
+#${goto 1550}${color slate grey}${font LED Mono:size=14}${rss https://www.subcentral.de/index.php?page=Feed&type=RSS2&boardID=182 1 feed_title}${color}${font LED Mono:size=8}
+${goto 1550}${color slate grey}${font LED Mono:size=14}SubCentral.de${color}${font LED Mono:size=8}
+${execpi 60 /home/alex/.conky/conky/scripts/rss_subcentral.pl}${font}
