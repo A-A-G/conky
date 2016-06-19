@@ -1,4 +1,4 @@
-# Fullscreen Conky with
+# German fullscreen Conky with
 * weather (including 9-day forecast)
 * system information
 * rss (arch news and subcentral)
