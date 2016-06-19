@@ -46,7 +46,7 @@ if [[ -s $HOME/.conky/conky/scripts/1b1/curr_cond_raw ]]; then
     sed -i -e 's/-s\|-xl.*$//g' -e 's/in &.*$/in/g' -e 's/\.gif.*$//g' -e 's/<\/div>.*$//g' $HOME/.conky/conky/scripts/1b1/curr_cond
     sed -i -e 's/\® //g' $HOME/.conky/conky/scripts/1b1/curr_cond
     time=$(sed -n 1p $HOME/.conky/conky/scripts/1b1/curr_cond)
-    if [[ $time == Tonight || $time == "H abd" || $time == "Early AM" ]]; then
+    if [[ $time == Nachts || $time == "H abd" || $time == "Early AM" ]]; then
         sed -i 3a- $HOME/.conky/conky/scripts/1b1/curr_cond
     fi
     line35=$(sed -n 35p $HOME/.conky/conky/scripts/1b1/curr_cond)
@@ -69,7 +69,7 @@ if [[ -s $HOME/.conky/conky/scripts/1b1/first_days_raw ]]; then
     sed -i -e 's/Heute/Heute/' -e 's/Mo$/Montag/' -e 's/Di$/Dienstag/' -e 's/Mi$/Mittwoch/' -e 's/Do$/Donnerstag/' -e 's/Fr$/Freitag/' -e 's/Sa$/Samstag/' -e 's/So$/Sonntag/' $HOME/.conky/conky/scripts/1b1/first_days
     sed -i 's/-s\|-l\|-xl.*$//g' $HOME/.conky/conky/scripts/1b1/first_days
     time=$(sed -n 1p $HOME/.conky/conky/scripts/1b1/curr_cond)
-    if [[ $time == Tonight || $time == "H abd" || $time == "Early AM" ]]; then
+    if [[ $time == Nachts || $time == "H abd" || $time == "Early AM" ]]; then
         sed -i 2a- $HOME/.conky/conky/scripts/1b1/first_days
     fi
     L1=$(sed -n 1p $HOME/.conky/conky/scripts/1b1/first_days)

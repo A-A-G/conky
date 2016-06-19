@@ -5,8 +5,10 @@
 #
 # Script:	./simple-rss-reader-v3.pl
 # Version: 	3.001
+#
+# Changed: A-A-G
 
-use LWP::Simple;
+use LWP::Simple; #install perl https support
 
 ############################
 # Configs
