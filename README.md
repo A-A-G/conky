@@ -3,4 +3,4 @@
 * system information
 * rss (arch news and subcentral)
 
-![ScreenShot](https://raw.github.com/A-A-G/conky/master/screenshot.png)
+![ScreenShot](screenshot.png)
