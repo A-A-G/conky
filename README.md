@@ -1,6 +1,6 @@
-# German fullscreen Conky with
+# German Fullscreen Conky with
 * weather (including 9-day forecast)
 * system information
-* rss (arch news and subcentral)
+* rss (arch news, subcentral and spon)
 
 ![ScreenShot](screenshot.png)
