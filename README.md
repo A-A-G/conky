@@ -3,4 +3,4 @@
 * system information
 * rss (arch news, subcentral and spon)
 
-![ScreenShot](screenshot.png)
+![ScreenShot](screenshots/screenshot.png)
