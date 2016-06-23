@@ -1,105 +1,87 @@
-## ---------- Begin Window Settings
-own_window yes
-own_window_type normal
-own_window_transparent yes
-own_window_hints skip_taskbar,skip_pager,undecorated,below #,sticky
-own_window_colour 000000
-own_window_class Conky
-own_window_title HTCSpill
-## ARGB can be used for real transparency
-# own_window_argb_visual yes ## Options: yes or no
-## Valid range is 0-255, where 0 is 0% opacity, and 255 is 100% opacity.
-# own_window_argb_value 100
+conky.config = {
+  ---------- Begin Window Settings
+  own_window=true,
+  own_window_type='normal',
+  own_window_transparent=true,
+  own_window_hints='undecorated,skip_taskbar,skip_pager,below',
+  own_window_colour='000000',
+  own_window_class='Conky',
+  own_window_title='FullWeatherConky',
 
-## alignment
-alignment top_right
+  -- alignment
+  alignment='top_left',
 
-# fold -sw36 requires this as a minimum:
-#minimum_size 245 0
-#maximum_width 245
+  -- minimum size
+  minimum_width=1800,
 
-minimum_size 1800 480
-maximum_width 1800
+  -- location
+  gap_x=3900,
+  gap_y=10,
+  ---------- End Window Settings
+  
+  ---------- Font Settings
+  override_utf8_locale=true,
 
-gap_x 3900	## l|r
-gap_y 10	## u|d
-alignment tl
-## ---------- End Window Settings
-## ---------- Font Settings
-## Force UTF8? requires XFT
-override_utf8_locale yes
+  -- Use Xft (anti-aliased font and stuff)
+  use_xft=true,
+  font='Liberation Mono:bold:size=14',
 
-## Use Xft (anti-aliased font and stuff)
-use_xft yes
-xftfont Liberation Mono:bold:size=14
-#xftfont Fantasque Sans Mono:bold:size=9
-#xftfont Monofur:bold:size=9
-#xftfont DejaVu Sans Mono:bold:size=9
+  -- Alpha of Xft font. Must be a value at or between 1 and 0
+  xftalpha=1.0,
+  --------- End Font Settings
+  
+  --------- Color Settings
+  draw_shades=true,
+  default_shade_color='000000',
+  draw_outline=false,
+  default_outline_color='000000',
 
-## Alpha of Xft font. Must be a value at or between 1 and 0
-xftalpha 1.0
+  default_color='DCDCDC', --Gainsboro
+  color0='98FB98', --PaleGreen
+  color1='778899', --LightSlateGray
+  color2='FFD700', --Gold
+  color3='B0E0E6', --PowderBlue
+  color4='F4A460', --SandyBrown
+  color5='FFDEAD', --255 222 173	NavajoWhite
+  color6='00BFFF', --DeepSkyBlue
+  color7='00FFFF', --  0 255 255	Cyan
+  color8='FFA500', --Orange
+  color9='FF4500', --OrangeRed
+  ---------- End Color Settings
+  
+  ---------- Begin Borders Section
+  border_inner_margin=0,
+  border_outer_margin=0,
+  ---------- End Borders Secton
+  
+  ---------- Begin Miscellaneous Section
+  background=true,
 
-## --------- End Font Settings
-## --------- Color Settings
-draw_shades yes
-default_shade_color 000000
-draw_outline no
-default_outline_color 000000
+  -- Adds spaces around certain objects to stop them from moving other things
+  -- around, this only helps if you are using a mono font
+  -- Options: right, left or none
+  use_spacer='none',
 
-default_color DCDCDC #Gainsboro
-color0 98FB98 #PaleGreen
-color1 778899 #LightSlateGray
-color2 FFD700 #Gold
-color3 B0E0E6 #PowderBlue
-color4 F4A460 #SandyBrown
-color5 FFDEAD #255 222 173	NavajoWhite
-color6 00BFFF #DeepSkyBlue
-color7 00FFFF #  0 255 255	Cyan
-color8 FFA500 #Orange
-color9 FF4500 #OrangeRed
-## ---------- End Color Settings
-## ---------- Begin Borders Section
-#draw_borders yes
-## Stippled borders?
-#stippled_borders 5
-## border margins
-border_inner_margin 0
-border_outer_margin 0
-## border width
-#border_width 2
-## graph borders
-#draw_graph_borders yes ## no
-## default_graph_size 15 40
-## ---------- End Borders Secton
-## ---------- Begin Miscellaneous Section
-## Boolean value, if true, Conky will be forked to background when started.
-background yes
+  -- Subtract (file slystem) buffers from used memory?
+  no_buffers=true,
 
-## Adds spaces around certain objects to stop them from moving other things
-## around, this only helps if you are using a mono font
-## Options: right, left or none
-use_spacer none
+  -- Imlib2 image cache size, in bytes. Defaults to 4MiB. Increase this value if
+  -- you use $image lots. Set to 0 to disable the image cache.
+  imlib_cache_size=0,
+  -- Interval (in seconds) to flush Imlib2 cache.
+  --imlib_cache_flush_interval=900,
 
-## Subtract (file slystem) buffers from used memory?
-no_buffers yes
+  -- Use the Xdbe extension? (eliminates flicker)
+  -- It is highly reco${color}mmended to use own window with this one
+  -- so double buffer won't be so big.
+  double_buffer=true,
 
-# Imlib2 image cache size, in bytes. Defaults to 4MiB. Increase this value if
-# you use $image lots. Set to 0 to disable the image cache.
-imlib_cache_size 0
+  -- ---------- End Miscellaneous Section
 
-# Interval (in seconds) to flush Imlib2 cache.
-#imlib_cache_flush_interval 900
+  update_interval=1
+}
 
-## Use the Xdbe extension? (eliminates flicker)
-## It is highly reco${color}mmended to use own window with this one
-## so double buffer won't be so big.
-double_buffer yes
-
-## ---------- End Miscellaneous Section
-
-update_interval 1
-
-TEXT
+conky.text = [[
 ${execi 300 bash /home/alex/.conky/conky/scripts/1b1_update}\
 \
 # Weather images
@@ -160,29 +142,52 @@ ${goto 1450}${execpi 600 sed -n '16p' /home/alex/.conky/conky/scripts/1b1/last_d
 ${goto 1650}${execpi 600 sed -n '21p' /home/alex/.conky/conky/scripts/1b1/last_days}${font}
 ${hr 2}
 \
-# CPU, memory and disk IO
+# CPU
 \
 ${goto 40}${cpugraph 50,1720 0000ff ff0000 -t}
-${goto 40}${font LED_Mono:size=16}CPU: ${execi 2 sensors | grep 'Physical id 0' | cut -c18-19}°C\
-${goto 170}${font} 0: ${color2}${execi 2 sensors | grep 'Core 0' | cut -c18-19}°C ${color dodgerblue3}${cpubar cpu1 5,200}${color2} ${cpu cpu1}%${color}\
-${goto 560}${font} 1: ${color2}${execi 2 sensors | grep 'Core 1' | cut -c18-19}°C ${color dodgerblue3}${cpubar cpu2 5,200}${color2} ${cpu cpu2}%${color}\
-${goto 950}${font} 2: ${color2}${execi 2 sensors | grep 'Core 2' | cut -c18-19}°C ${color dodgerblue3}${cpubar cpu3 5,200}${color2} ${cpu cpu3}%${color}\
-${goto 1340}${font} 3: ${color2}${execi 2 sensors | grep 'Core 3' | cut -c18-19}°C ${color dodgerblue3}${cpubar cpu4 5,200}${color2} ${cpu cpu4}%${color}\
+${goto 40}${font LED_Mono:size=16}CPU: ${execi 2 sensors | grep 'CPU Temperature' | cut -c23-24}°C\
+${exec cat /proc/cpuinfo | grep 'processor' | wc -l > /home/alex/.conky/conky/scripts/cpu.tmp}\
+${if_existing /home/alex/.conky/conky/cpu.tmp 4}\
+${goto 170}${font} 0: ${color2}${texeci 2 sensors | grep 'Core 0' | cut -c18-19}°C ${color dodgerblue3}${cpubar cpu1 5,200}${color2} ${cpu cpu1}%${color}\
+${goto 560}${font} 1: ${color2}${texeci 2 sensors | grep 'Core 1' | cut -c18-19}°C ${color dodgerblue3}${cpubar cpu2 5,200}${color2} ${cpu cpu2}%${color}\
+${goto 950}${font} 2: ${color2}${texeci 2 sensors | grep 'Core 2' | cut -c18-19}°C ${color dodgerblue3}${cpubar cpu3 5,200}${color2} ${cpu cpu3}%${color}\
+${goto 1340}${font} 3: ${color2}${texeci 2 sensors | grep 'Core 3' | cut -c18-19}°C ${color dodgerblue3}${cpubar cpu4 5,200}${color2} ${cpu cpu4}%${color}\
+${endif}\
+${if_existing /home/alex/.conky/conky/scripts/cpu.tmp 8}\
+${goto 145}${font} 0: ${color2}${execi 2 sensors | grep 'Core 0' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu1 5,50}${color2} ${cpu cpu1}%${color}\
+${goto 340}${font} 1: ${color2}${execi 2 sensors | grep 'Core 1' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu2 5,50}${color2} ${cpu cpu2}%${color}\
+${goto 535}${font} 2: ${color2}${execi 2 sensors | grep 'Core 2' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu3 5,50}${color2} ${cpu cpu3}%${color}\
+${goto 730}${font} 3: ${color2}${execi 2 sensors | grep 'Core 3' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu4 5,50}${color2} ${cpu cpu4}%${color}\
+${goto 925}${font} 4: ${color2}${execi 2 sensors | grep 'Core 0' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu5 5,50}${color2} ${cpu cpu5}%${color}\
+${goto 1120}${font} 5: ${color2}${execi 2 sensors | grep 'Core 1' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu6 5,50}${color2} ${cpu cpu6}%${color}\
+${goto 1315}${font} 6: ${color2}${execi 2 sensors | grep 'Core 2' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu7 5,50}${color2} ${cpu cpu7}%${color}\
+${goto 1510}${font} 7: ${color2}${execi 2 sensors | grep 'Core 3' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu8 5,50}${color2} ${cpu cpu8}%${color}\
+${endif}\
+\
+# Memory
+\
 ${alignr 39}${font LED_Mono:size=16}${cpu}%${font}
 ${goto 40}${memgraph 50,1720 0000ff ff0000 -t}
 ${goto 40}${font LED_Mono:size=16}Memory:${font}\
 ${goto 560} ${color5}Used: ${color2}$mem ${color}/ ${color2}$memmax${color}\
 ${goto 950} ${color5}Free: ${color2}$memeasyfree${color}\
 ${alignr 39}${font LED_Mono:size=16}${memperc}%${font}
+\
+# DISK IO
+\
 ${goto 40}${diskiograph_read 50,835 0000ff ff0000 -t}${goto 925}${diskiograph_write 50,835 0000ff ff0000 -t}
 ${goto 40}${font LED_Mono:size=16}Disk I/O:\
 ${goto 170}${font} ${color5}Read: ${color2}${diskio_read}\
 ${goto 400}${color5}File system (${fs_type /}): ${color2}${fs_used /} ${color}/ ${color2}${fs_size /}  ${color dodgerblue3}${fs_bar 20,500 /} ${color2}${fs_used_perc /}%${color}\
 ${goto 1450}${color5}Write: ${color2}${diskio_write}${color}\
-${alignr 39}${font LED_Mono:size=16}${diskio}${font}
+${alignr 39}${font LED_Mono:size=16}${diskio}${font}\
 \
 # Network
 \
+${if_existing /proc/net/route enp6s0}\ # add or exchange with your adapter
+${goto 40}${upspeedgraph enp6s0 50,835 0000ff ff0000 -t}${goto 925}${downspeedgraph enp6s0 50,835 0000ff ff0000 -t}
+${goto 40}${font LED_Mono:size=16}Network: $font}${goto 170}${color5}Up: ${color2}${upspeed enp6s0}${goto 350}${color5}Sent: ${color2}${totalup enp6s0}${color5}${goto 925}Down: ${color2}${downspeed enp6s0}${color5}${goto 1100}Received: ${color2}${totaldown enp6s0}${color}\
+${endif}
 ${if_existing /proc/net/route enp0s25}\
 ${goto 40}${upspeedgraph enp0s25 50,835 0000ff ff0000 -t}${goto 925}${downspeedgraph enp0s25 50,835 0000ff ff0000 -t}
 ${goto 40}${font LED_Mono:size=16}Network: $font}${goto 170}${color5}Up: ${color2}${upspeed enp0s25}${goto 350}${color5}Sent: ${color2}${totalup enp0s25}${color5}${goto 925}Down: ${color2}${downspeed enp0s25}${color5}${goto 1100}Received: ${color2}${totaldown enp0s25}${color}\
@@ -228,4 +233,4 @@ ${execpi 60 /home/alex/.conky/conky/scripts/rss_arch.pl}${font}
 ${voffset -182}
 #${goto 1550}${color slate grey}${font LED Mono:size=14}${rss https://www.subcentral.de/index.php?page=Feed&type=RSS2&boardID=182 1 feed_title}${color}${font LED Mono:size=8}
 ${goto 1550}${color slate grey}${font LED Mono:size=14}SubCentral.de${color}${font LED Mono:size=8}
-${execpi 60 /home/alex/.conky/conky/scripts/rss_subcentral.pl}${font}
+${execpi 60 /home/alex/.conky/conky/scripts/rss_subcentral.pl}${font} ]]
