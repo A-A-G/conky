@@ -82,7 +82,7 @@ conky.config = {
 }
 
 conky.text = [[
-${execi 300 bash /home/alex/.conky/conky/scripts/1b1_update}\
+${texeci 300 bash /home/alex/.conky/conky/scripts/1b1_update}\
 \
 # Weather images
 \
@@ -122,14 +122,14 @@ ${goto 650}${texeci 600 sed -n '23p' /home/alex/.conky/conky/scripts/1b1/first_d
 ${texeci 600 sed -n '24p' /home/alex/.conky/conky/scripts/1b1/first_days}°\
 ${goto 850}${texeci 600 sed -n '4p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
 ${texeci 600 sed -n '5p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
-${goto 1050}${execi 90 sed -n '9p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
-${execi 90 sed -n '10p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
-${goto 1250}${execi 90 sed -n '14p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
-${execi 90 sed -n '15p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
-${goto 1450}${execi 90 sed -n '19p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
-${execi 90 sed -n '20p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
-${goto 1650}${execi 90 sed -n '24p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
-${execi 90 sed -n '25p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
+${goto 1050}${texeci 90 sed -n '9p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
+${texeci 90 sed -n '10p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
+${goto 1250}${texeci 90 sed -n '14p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
+${texeci 90 sed -n '15p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
+${goto 1450}${texeci 90 sed -n '19p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
+${texeci 90 sed -n '20p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
+${goto 1650}${texeci 90 sed -n '24p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
+${texeci 90 sed -n '25p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
 
 ${font LED_Mono:size=16}${goto 50}${texeci 600 sed -n '5p' /home/alex/.conky/conky/scripts/1b1/first_days}\
 ${goto 250}${texeci 600 sed -n '10p' /home/alex/.conky/conky/scripts/1b1/first_days}\
@@ -145,7 +145,7 @@ ${hr 2}
 # CPU
 \
 ${goto 40}${cpugraph 50,1720 0000ff ff0000 -t}
-${goto 40}${font LED_Mono:size=16}CPU: ${execi 2 sensors | grep 'CPU Temperature' | cut -c23-24}°C\
+${goto 40}${font LED_Mono:size=16}CPU: ${texeci 2 sensors | grep 'CPU Temperature' | cut -c23-24}°C\
 ${exec cat /proc/cpuinfo | grep 'processor' | wc -l > /home/alex/.conky/conky/scripts/cpu.tmp}\
 ${if_existing /home/alex/.conky/conky/cpu.tmp 4}\
 ${goto 170}${font} 0: ${color2}${texeci 2 sensors | grep 'Core 0' | cut -c18-19}°C ${color dodgerblue3}${cpubar cpu1 5,200}${color2} ${cpu cpu1}%${color}\
