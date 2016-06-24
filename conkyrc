@@ -100,28 +100,28 @@ ${image /home/alex/.conky/conky/scripts/1b1/last_22.png -p 1600,275 -s 184x108}\
 # Weather (heute)
 \
 ${font LED_Mono:size=100}${goto 0}${time %H}:${goto 220}${time %M}:${goto 440}${time %S}${font}\
-${goto 1100}${voffset -100}${font LED_Mono:size=30}${execpi 600 sed -n '28p' /home/alex/.conky/conky/scripts/1b1/curr_cond}
-${goto 1100}${font LED_Mono:size=50}${execpi 600 sed -n '29p' /home/alex/.conky/conky/scripts/1b1/curr_cond} \
-(${execpi 600 sed -n '30p' /home/alex/.conky/conky/scripts/1b1/curr_cond})°C${font}\
-${font LED_Mono:size=20}${voffset -40}${alignr 39}${color7}Wind: ${color}${execpi 600 sed -n '31p' /home/alex/.conky/conky/scripts/1b1/curr_cond} (${execpi 600 sed -n '38p' /home/alex/.conky/conky/scripts/1b1/curr_cond})
-${alignr 39}${color7}Luftfeuchtigkeit: ${color}${execpi 600 sed -n '32p' /home/alex/.conky/conky/scripts/1b1/curr_cond}
-${alignr 39}${color7}Wolkendecke: ${color}${execpi 600 sed -n '36p' /home/alex/.conky/conky/scripts/1b1/curr_cond}
+${goto 1100}${voffset -100}${font LED_Mono:size=30}${texeci 600 sed -n '28p' /home/alex/.conky/conky/scripts/1b1/curr_cond}
+${goto 1100}${font LED_Mono:size=50}${texeci 600 sed -n '29p' /home/alex/.conky/conky/scripts/1b1/curr_cond} \
+(${texeci 600 sed -n '30p' /home/alex/.conky/conky/scripts/1b1/curr_cond})°C${font}\
+${font LED_Mono:size=20}${voffset -40}${alignr 39}${color7}Wind: ${color}${texeci 600 sed -n '31p' /home/alex/.conky/conky/scripts/1b1/curr_cond} (${texeci 600 sed -n '38p' /home/alex/.conky/conky/scripts/1b1/curr_cond})
+${alignr 39}${color7}Luftfeuchtigkeit: ${color}${texeci 600 sed -n '32p' /home/alex/.conky/conky/scripts/1b1/curr_cond}
+${alignr 39}${color7}Wolkendecke: ${color}${texeci 600 sed -n '36p' /home/alex/.conky/conky/scripts/1b1/curr_cond}
 ${voffset -20}${font LED_Mono:size=80}${goto 50}${time %a} ${time %e} ${time %b}\
-${font LED_Mono:size=20}${goto 1100}${color7}Sonnenaufgang: ${color}${execpi 600 sed -n '39p' /home/alex/.conky/conky/scripts/1b1/curr_cond}${alignr 39}${color7}Sonnenuntergang: ${color}${execpi 600 sed -n '40p' /home/alex/.conky/conky/scripts/1b1/curr_cond}
+${font LED_Mono:size=20}${goto 1100}${color7}Sonnenaufgang: ${color}${texeci 600 sed -n '39p' /home/alex/.conky/conky/scripts/1b1/curr_cond}${alignr 39}${color7}Sonnenuntergang: ${color}${texeci 600 sed -n '40p' /home/alex/.conky/conky/scripts/1b1/curr_cond}
 ${voffset 100}
 \
 # Weather (Vorschau)
 \
-${goto 50}${execpi 600 sed -n '8p' /home/alex/.conky/conky/scripts/1b1/first_days}°/\
-${execpi 600 sed -n '9p' /home/alex/.conky/conky/scripts/1b1/first_days}°\
-${goto 250}${execpi 600 sed -n '13p' /home/alex/.conky/conky/scripts/1b1/first_days}°/\
-${execpi 600 sed -n '14p' /home/alex/.conky/conky/scripts/1b1/first_days}°\
-${goto 450}${execpi 600 sed -n '18p' /home/alex/.conky/conky/scripts/1b1/first_days}°/\
-${execpi 600 sed -n '19p' /home/alex/.conky/conky/scripts/1b1/first_days}°\
-${goto 650}${execpi 600 sed -n '23p' /home/alex/.conky/conky/scripts/1b1/first_days}°/\
-${execpi 600 sed -n '24p' /home/alex/.conky/conky/scripts/1b1/first_days}°\
-${goto 850}${execpi 600 sed -n '4p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
-${execpi 600 sed -n '5p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
+${goto 50}${texeci 600 sed -n '8p' /home/alex/.conky/conky/scripts/1b1/first_days}°/\
+${texeci 600 sed -n '9p' /home/alex/.conky/conky/scripts/1b1/first_days}°\
+${goto 250}${texeci 600 sed -n '13p' /home/alex/.conky/conky/scripts/1b1/first_days}°/\
+${texeci 600 sed -n '14p' /home/alex/.conky/conky/scripts/1b1/first_days}°\
+${goto 450}${texeci 600 sed -n '18p' /home/alex/.conky/conky/scripts/1b1/first_days}°/\
+${texeci 600 sed -n '19p' /home/alex/.conky/conky/scripts/1b1/first_days}°\
+${goto 650}${texeci 600 sed -n '23p' /home/alex/.conky/conky/scripts/1b1/first_days}°/\
+${texeci 600 sed -n '24p' /home/alex/.conky/conky/scripts/1b1/first_days}°\
+${goto 850}${texeci 600 sed -n '4p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
+${texeci 600 sed -n '5p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
 ${goto 1050}${execi 90 sed -n '9p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
 ${execi 90 sed -n '10p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
 ${goto 1250}${execi 90 sed -n '14p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
@@ -131,15 +131,15 @@ ${execi 90 sed -n '20p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
 ${goto 1650}${execi 90 sed -n '24p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
 ${execi 90 sed -n '25p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
 
-${font LED_Mono:size=16}${goto 50}${execpi 600 sed -n '5p' /home/alex/.conky/conky/scripts/1b1/first_days}\
-${goto 250}${execpi 600 sed -n '10p' /home/alex/.conky/conky/scripts/1b1/first_days}\
-${goto 450}${execpi 600 sed -n '15p' /home/alex/.conky/conky/scripts/1b1/first_days}\
-${goto 650}${execpi 600 sed -n '20p' /home/alex/.conky/conky/scripts/1b1/first_days}\
-${goto 850}${execpi 600 sed -n '1p' /home/alex/.conky/conky/scripts/1b1/last_days}\
-${goto 1050}${execpi 600 sed -n '6p' /home/alex/.conky/conky/scripts/1b1/last_days}\
-${goto 1250}${execpi 600 sed -n '11p' /home/alex/.conky/conky/scripts/1b1/last_days}\
-${goto 1450}${execpi 600 sed -n '16p' /home/alex/.conky/conky/scripts/1b1/last_days}\
-${goto 1650}${execpi 600 sed -n '21p' /home/alex/.conky/conky/scripts/1b1/last_days}${font}
+${font LED_Mono:size=16}${goto 50}${texeci 600 sed -n '5p' /home/alex/.conky/conky/scripts/1b1/first_days}\
+${goto 250}${texeci 600 sed -n '10p' /home/alex/.conky/conky/scripts/1b1/first_days}\
+${goto 450}${texeci 600 sed -n '15p' /home/alex/.conky/conky/scripts/1b1/first_days}\
+${goto 650}${texeci 600 sed -n '20p' /home/alex/.conky/conky/scripts/1b1/first_days}\
+${goto 850}${texeci 600 sed -n '1p' /home/alex/.conky/conky/scripts/1b1/last_days}\
+${goto 1050}${texeci 600 sed -n '6p' /home/alex/.conky/conky/scripts/1b1/last_days}\
+${goto 1250}${texeci 600 sed -n '11p' /home/alex/.conky/conky/scripts/1b1/last_days}\
+${goto 1450}${texeci 600 sed -n '16p' /home/alex/.conky/conky/scripts/1b1/last_days}\
+${goto 1650}${texeci 600 sed -n '21p' /home/alex/.conky/conky/scripts/1b1/last_days}${font}
 ${hr 2}
 \
 # CPU
