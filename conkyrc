@@ -82,64 +82,74 @@ conky.config = {
 }
 
 conky.text = [[
-${texeci 300 bash /home/alex/.conky/conky/scripts/1b1_update}\
+${texeci 222 bash /home/alex/.conky/conky/scripts/1ag}\
 \
 # Weather images
 \
-${image /home/alex/.conky/conky/scripts/1b1/cc.png -p 600,0 -s 500x300}\
-${image /home/alex/.conky/conky/scripts/1b1/6.png -p 0,275 -s 184x108}\
-${image /home/alex/.conky/conky/scripts/1b1/11.png -p 200,275 -s 184x108}\
-${image /home/alex/.conky/conky/scripts/1b1/16.png -p 400,275 -s 184x108}\
-${image /home/alex/.conky/conky/scripts/1b1/21.png -p 600,275 -s 184x108}\
-${image /home/alex/.conky/conky/scripts/1b1/last_2.png -p 800,275 -s 184x108}
-${image /home/alex/.conky/conky/scripts/1b1/last_7.png -p 1000,275 -s 184x108}\
-${image /home/alex/.conky/conky/scripts/1b1/last_12.png -p 1200,275 -s 184x108}\
-${image /home/alex/.conky/conky/scripts/1b1/last_17.png -p 1400,275 -s 184x108}\
-${image /home/alex/.conky/conky/scripts/1b1/last_22.png -p 1600,275 -s 184x108}\
+${image /home/alex/.conky/conky/scripts/1_accu_ger/0.png -p 600,0 -s 500x300}\
+${image /home/alex/.conky/conky/scripts/1_accu_ger/2.png -p 0,275 -s 184x108}\
+${image /home/alex/.conky/conky/scripts/1_accu_ger/3.png -p 200,275 -s 184x108}\
+${image /home/alex/.conky/conky/scripts/1_accu_ger/4.png -p 400,275 -s 184x108}\
+${image /home/alex/.conky/conky/scripts/1_accu_ger/5.png -p 600,275 -s 184x108}\
+${image /home/alex/.conky/conky/scripts/1_accu_ger/6.png -p 800,275 -s 184x108}
+${image /home/alex/.conky/conky/scripts/1_accu_ger/7.png -p 1000,275 -s 184x108}\
+${image /home/alex/.conky/conky/scripts/1_accu_ger/8.png -p 1200,275 -s 184x108}\
+${image /home/alex/.conky/conky/scripts/1_accu_ger/9.png -p 1400,275 -s 184x108}\
+${image /home/alex/.conky/conky/scripts/1_accu_ger/10.png -p 1600,275 -s 184x108}\
 \
 # Weather (heute)
 \
+${if_existing /home/alex/.conky/conky/scripts/1_accu_ger/curr_cond}\
 ${font LED_Mono:size=100}${goto 0}${time %H}:${goto 220}${time %M}:${goto 440}${time %S}${font}\
-${goto 1100}${voffset -100}${font LED_Mono:size=30}${texeci 600 sed -n '28p' /home/alex/.conky/conky/scripts/1b1/curr_cond}
-${goto 1100}${font LED_Mono:size=50}${texeci 600 sed -n '29p' /home/alex/.conky/conky/scripts/1b1/curr_cond} \
-(${texeci 600 sed -n '30p' /home/alex/.conky/conky/scripts/1b1/curr_cond})°C${font}\
-${font LED_Mono:size=20}${voffset -40}${alignr 39}${color7}Wind: ${color}${texeci 600 sed -n '31p' /home/alex/.conky/conky/scripts/1b1/curr_cond} (${texeci 600 sed -n '38p' /home/alex/.conky/conky/scripts/1b1/curr_cond})
-${alignr 39}${color7}Luftfeuchtigkeit: ${color}${texeci 600 sed -n '32p' /home/alex/.conky/conky/scripts/1b1/curr_cond}
-${alignr 39}${color7}Wolkendecke: ${color}${texeci 600 sed -n '36p' /home/alex/.conky/conky/scripts/1b1/curr_cond}
+${goto 1100}${voffset -100}${font LED_Mono:size=30}${texeci 600 sed -n '4p' /home/alex/.conky/conky/scripts/1_accu_ger/curr_cond}
+${goto 1100}${font LED_Mono:size=50}${texeci 600 sed -n '2p' /home/alex/.conky/conky/scripts/1_accu_ger/curr_cond} \
+(${texeci 600 sed -n '3p' /home/alex/.conky/conky/scripts/1_accu_ger/curr_cond})°C${font}\
+${font LED_Mono:size=20}${voffset -40}${alignr 39}${color7}Wind: ${color}${texeci 600 sed -n '6p' /home/alex/.conky/conky/scripts/1_accu_ger/curr_cond} (${texeci 600 sed -n '5p' /home/alex/.conky/conky/scripts/1_accu_ger/curr_cond})
+${alignr 39}${color7}Luftfeuchtigkeit: ${color}${texeci 600 sed -n '7p' /home/alex/.conky/conky/scripts/1_accu_ger/curr_cond}
+${alignr 39}${color7}Wolkendecke: ${color}${texeci 600 sed -n '10p' /home/alex/.conky/conky/scripts/1_accu_ger/curr_cond}
 ${voffset -20}${font LED_Mono:size=80}${goto 50}${time %a} ${time %e} ${time %b}\
-${font LED_Mono:size=20}${goto 1100}${color7}Sonnenaufgang: ${color}${texeci 600 sed -n '39p' /home/alex/.conky/conky/scripts/1b1/curr_cond}${alignr 39}${color7}Sonnenuntergang: ${color}${texeci 600 sed -n '40p' /home/alex/.conky/conky/scripts/1b1/curr_cond}
+${font LED_Mono:size=20}${goto 1100}${color7}Sonnenaufgang: ${color}${texeci 600 sed -n '14p' /home/alex/.conky/conky/scripts/1_accu_ger/curr_cond}${alignr 39}${color7}Sonnenuntergang: ${color}${texeci 600 sed -n '15p' /home/alex/.conky/conky/scripts/1_accu_ger/curr_cond}
 ${voffset 100}
+${endif}\
 \
 # Weather (Vorschau)
 \
-${goto 50}${texeci 600 sed -n '8p' /home/alex/.conky/conky/scripts/1b1/first_days}°/\
-${texeci 600 sed -n '9p' /home/alex/.conky/conky/scripts/1b1/first_days}°\
-${goto 250}${texeci 600 sed -n '13p' /home/alex/.conky/conky/scripts/1b1/first_days}°/\
-${texeci 600 sed -n '14p' /home/alex/.conky/conky/scripts/1b1/first_days}°\
-${goto 450}${texeci 600 sed -n '18p' /home/alex/.conky/conky/scripts/1b1/first_days}°/\
-${texeci 600 sed -n '19p' /home/alex/.conky/conky/scripts/1b1/first_days}°\
-${goto 650}${texeci 600 sed -n '23p' /home/alex/.conky/conky/scripts/1b1/first_days}°/\
-${texeci 600 sed -n '24p' /home/alex/.conky/conky/scripts/1b1/first_days}°\
-${goto 850}${texeci 600 sed -n '4p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
-${texeci 600 sed -n '5p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
-${goto 1050}${texeci 90 sed -n '9p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
-${texeci 90 sed -n '10p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
-${goto 1250}${texeci 90 sed -n '14p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
-${texeci 90 sed -n '15p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
-${goto 1450}${texeci 90 sed -n '19p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
-${texeci 90 sed -n '20p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
-${goto 1650}${texeci 90 sed -n '24p' /home/alex/.conky/conky/scripts/1b1/last_days}°/\
-${texeci 90 sed -n '25p' /home/alex/.conky/conky/scripts/1b1/last_days}°\
+${if_existing /home/alex/.conky/conky/scripts/1_accu_ger/first_days}\
+${goto 50}${texeci 600 sed -n '8p' /home/alex/.conky/conky/scripts/1_accu_ger/first_days}°/\
+${texeci 600 sed -n '9p' /home/alex/.conky/conky/scripts/1_accu_ger/first_days}°\
+${goto 250}${texeci 600 sed -n '13p' /home/alex/.conky/conky/scripts/1_accu_ger/first_days}°/\
+${texeci 600 sed -n '14p' /home/alex/.conky/conky/scripts/1_accu_ger/first_days}°\
+${goto 450}${texeci 600 sed -n '18p' /home/alex/.conky/conky/scripts/1_accu_ger/first_days}°/\
+${texeci 600 sed -n '19p' /home/alex/.conky/conky/scripts/1_accu_ger/first_days}°\
+${goto 650}${texeci 600 sed -n '23p' /home/alex/.conky/conky/scripts/1_accu_ger/first_days}°/\
+${texeci 600 sed -n '24p' /home/alex/.conky/conky/scripts/1_accu_ger/first_days}°\
+${endif}\
+${if_existing /home/alex/.conky/conky/scripts/1_accu_ger/last_days}\
+${goto 850}${texeci 600 sed -n '3p' /home/alex/.conky/conky/scripts/1_accu_ger/last_days}°/\
+${texeci 600 sed -n '4p' /home/alex/.conky/conky/scripts/1_accu_ger/last_days}°\
+${goto 1050}${texeci 90 sed -n '8p' /home/alex/.conky/conky/scripts/1_accu_ger/last_days}°/\
+${texeci 90 sed -n '9p' /home/alex/.conky/conky/scripts/1_accu_ger/last_days}°\
+${goto 1250}${texeci 90 sed -n '13p' /home/alex/.conky/conky/scripts/1_accu_ger/last_days}°/\
+${texeci 90 sed -n '14p' /home/alex/.conky/conky/scripts/1_accu_ger/last_days}°\
+${goto 1450}${texeci 90 sed -n '18p' /home/alex/.conky/conky/scripts/1_accu_ger/last_days}°/\
+${texeci 90 sed -n '19p' /home/alex/.conky/conky/scripts/1_accu_ger/last_days}°\
+${goto 1650}${texeci 90 sed -n '23p' /home/alex/.conky/conky/scripts/1_accu_ger/last_days}°/\
+${texeci 90 sed -n '24p' /home/alex/.conky/conky/scripts/1_accu_ger/last_days}°\
+${endif}\
 
-${font LED_Mono:size=16}${goto 50}${texeci 600 sed -n '5p' /home/alex/.conky/conky/scripts/1b1/first_days}\
-${goto 250}${texeci 600 sed -n '10p' /home/alex/.conky/conky/scripts/1b1/first_days}\
-${goto 450}${texeci 600 sed -n '15p' /home/alex/.conky/conky/scripts/1b1/first_days}\
-${goto 650}${texeci 600 sed -n '20p' /home/alex/.conky/conky/scripts/1b1/first_days}\
-${goto 850}${texeci 600 sed -n '1p' /home/alex/.conky/conky/scripts/1b1/last_days}\
-${goto 1050}${texeci 600 sed -n '6p' /home/alex/.conky/conky/scripts/1b1/last_days}\
-${goto 1250}${texeci 600 sed -n '11p' /home/alex/.conky/conky/scripts/1b1/last_days}\
-${goto 1450}${texeci 600 sed -n '16p' /home/alex/.conky/conky/scripts/1b1/last_days}\
-${goto 1650}${texeci 600 sed -n '21p' /home/alex/.conky/conky/scripts/1b1/last_days}${font}
+${if_existing /home/alex/.conky/conky/scripts/1_accu_ger/first_days}\
+${font LED_Mono:size=16}${goto 50}${texeci 600 sed -n '6p' /home/alex/.conky/conky/scripts/1_accu_ger/first_days}\
+${goto 250}${texeci 600 sed -n '11p' /home/alex/.conky/conky/scripts/1_accu_ger/first_days}\
+${goto 450}${texeci 600 sed -n '16p' /home/alex/.conky/conky/scripts/1_accu_ger/first_days}\
+${goto 650}${texeci 600 sed -n '21p' /home/alex/.conky/conky/scripts/1_accu_ger/first_days}\
+${endif}\
+${if_existing /home/alex/.conky/conky/scripts/1_accu_ger/last_days}\
+${goto 850}${texeci 600 sed -n '1p' /home/alex/.conky/conky/scripts/1_accu_ger/last_days}\
+${goto 1050}${texeci 600 sed -n '6p' /home/alex/.conky/conky/scripts/1_accu_ger/last_days}\
+${goto 1250}${texeci 600 sed -n '11p' /home/alex/.conky/conky/scripts/1_accu_ger/last_days}\
+${goto 1450}${texeci 600 sed -n '16p' /home/alex/.conky/conky/scripts/1_accu_ger/last_days}\
+${goto 1650}${texeci 600 sed -n '21p' /home/alex/.conky/conky/scripts/1_accu_ger/last_days}${font}
+${endif}\
 ${hr 2}
 \
 # CPU
@@ -230,7 +240,7 @@ ${goto 1200}${voffset -10}${hr 1}${voffset -10}
 \
 ${goto 1200}${color slate grey}${font LED Mono:size=14}${rss https://www.archlinux.org/feeds/news/ 1 feed_title}${color}${font LED Mono:size=8}
 ${execpi 60 /home/alex/.conky/conky/scripts/rss_arch.pl}${font}
-${voffset -182}
+${voffset -170}
 #${goto 1550}${color slate grey}${font LED Mono:size=14}${rss https://www.subcentral.de/index.php?page=Feed&type=RSS2&boardID=182 1 feed_title}${color}${font LED Mono:size=8}
 ${goto 1550}${color slate grey}${font LED Mono:size=14}SubCentral.de${color}${font LED Mono:size=8}
 ${execpi 60 /home/alex/.conky/conky/scripts/rss_subcentral.pl}${font} ]]

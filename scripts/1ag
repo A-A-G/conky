@@ -1,0 +1,177 @@
+#!/bin/bash
+
+#put your Accuweather address here
+address="http://www.accuweather.com/de/de/konstanz/78467/weather-forecast/134478"
+
+loc_id=$(echo $address|sed 's/\/weather-forecast.*$//'|sed 's/^.*\///')
+last_number=$(echo $address|sed 's/^.*\///')
+	
+#function: test_image
+test_image () {
+    case $1 in
+         1)
+           echo a
+         ;;
+         2|3)
+           echo b 
+         ;;
+         4|5)
+           echo c
+         ;;
+         6)
+           echo d
+         ;;
+         7)
+           echo e
+         ;;
+         8)
+           echo f
+         ;;
+         11)
+           echo 0
+         ;;
+         12)
+           echo h
+         ;;
+         13|14)
+           echo g
+         ;;
+         15)
+           echo m
+         ;;
+         16|17)
+           echo k
+         ;;
+         18)
+           echo i
+         ;;
+         19)
+           echo q
+         ;;
+         20|21|23)
+           echo o
+         ;;
+         22)
+           echo r
+         ;;
+         24|31)
+           echo E
+         ;;
+         25)
+           echo v
+         ;;
+         26)
+           echo x
+         ;;
+         29)
+           echo y
+         ;;
+         30)
+           echo 5
+         ;;
+         32)
+           echo 6
+         ;;
+         33)
+           echo A
+         ;;
+         34|35)
+           echo B
+         ;;
+         36|37)
+           echo C
+         ;;
+         38)
+           echo D
+         ;;
+         39|40)
+           echo G
+         ;;
+         41|42)
+           echo K
+         ;;
+         43|44)
+           echo O
+         ;;
+         *)
+		   echo -
+		 ;;   
+        esac
+} 
+
+
+kill -STOP $(pidof conky)
+killall wget
+
+curr_addr="$(echo $address|sed 's/weather-forecast.*$//')"current-weather/"$last_number"
+wget -O $HOME/.conky/conky/scripts/1_accu_ger/curr_cond_raw "$curr_addr"
+
+addr1="$(echo $address|sed 's/weather-forecast.*$//')"daily-weather-forecast/"$last_number"
+wget -O $HOME/.conky/conky/scripts/1_accu_ger/first_days_raw "$addr1"
+
+addr2="$addr1"?day=6
+wget -O $HOME/.conky/conky/scripts/1_accu_ger/last_days_raw "$addr2"
+
+rm $HOME/.conky/conky/scripts/1_accu_ger/*.png
+
+#current conditions
+if [[ -s $HOME/.conky/conky/scripts/1_accu_ger/curr_cond_raw ]]; then
+    sed -i '/detail-now/,/Astronomie <span class/!d' $HOME/.conky/conky/scripts/1_accu_ger/curr_cond_raw
+    egrep -i '"cond"|icon i-|large-temp|small-temp|wind-point|"wind"|Luftfeuchtigkeit|Luftdruck|UV-Index|Wolkendecke|Ceiling|Taupunkt|Sichtweite|Dauer|Sonnenaufgang:|Sonnenuntergang:|Mondaufgang:|Monduntergang:' $HOME/.conky/conky/scripts/1_accu_ger/curr_cond_raw > $HOME/.conky/conky/scripts/1_accu_ger/curr_cond
+    sed -i -e 's/&#246\;/ö/g' -e 's/&#228\;/ä/g' -e 's/&#252\;/ü/g' -e 's/&#196\;/Ä/g' -e 's/&#214\;/Ö/g' -e 's/&#220\;/Ü/g' -e 's/&#223\;/ß/g' $HOME/.conky/conky/scripts/1_accu_ger/curr_cond
+    sed -i -e 's/^.*<strong>//g' -e 's/^.*<span>//g' -e 's/^.*icon i-//g' -e 's/^.*large-temp">//g' -e 's/^.*<\/em> //g' -e 's/^.*"cond">//g' -e 's/^.*wind-point //g' $HOME/.conky/conky/scripts/1_accu_ger/curr_cond
+    sed -i -e 's/">.*$//g' -e 's/&deg.*$//g' -e 's/<\/span>.*$//g' -e 's/&#.*$//g' -e 's/ &darr.*$//g' -e 's/ &uarr.*$//g' -e 's/<\/strong>.*$//g' $HOME/.conky/conky/scripts/1_accu_ger/curr_cond
+    sed -i '1s/-.*$//' $HOME/.conky/conky/scripts/1_accu_ger/curr_cond
+    sed -i -e 's/&#246\;/ö/g' -e 's/&#228\;/ä/g' -e 's/&#252\;/ü/g' -e 's/&#196\;/Ä/g' -e 's/&#214\;/Ö/g' -e 's/&#220\;/Ü/g' -e 's/&#223\;/ß/g' $HOME/.conky/conky/scripts/1_accu_ger/curr_cond
+    image=$(sed -n 1p $HOME/.conky/conky/scripts/1_accu_ger/curr_cond)
+    echo $(test_image $image) >> $HOME/.conky/conky/scripts/1_accu_ger/curr_cond
+    cp $HOME/.conky/conky/scripts/1_accu_ger/Forecast_Images/$(sed -n 1p $HOME/.conky/conky/scripts/1_accu_ger/curr_cond).png $HOME/.conky/conky/scripts/1_accu_ger/0.png
+fi
+
+#First 5 days
+if [[ -s $HOME/.conky/conky/scripts/1_accu_ger/first_days_raw ]]; then
+
+    sed -i '/.feed-controls/,/\.feed-tabs/!d' $HOME/.conky/conky/scripts/1_accu_ger/first_days_raw
+    egrep -i 'href="#"|icon i-|"large-temp"|"small-temp"|temp-label|"cond"' $HOME/.conky/conky/scripts/1_accu_ger/first_days_raw > $HOME/.conky/conky/scripts/1_accu_ger/first_days
+    sed -i -e 's/&#246\;/ö/g' -e 's/&#228\;/ä/g' -e 's/&#252\;/ü/g' -e 's/&#196\;/Ä/g' -e 's/&#214\;/Ö/g' -e 's/&#220\;/Ü/g' -e 's/&#223\;/ß/g' $HOME/.conky/conky/scripts/1_accu_ger/first_days
+    sed -i -e '/icon/s/-. //g' -e 's/^.*icon i-//g' -e 's/^.*large-temp">//g' -e 's/^.*small-temp">\///g' -e 's/^.*"cond">//g' -e 's/^.*href="#">//g' -e 's/^.*"temp-label tonight ">//g' -e 's/^.*"temp-label tonight selected">//g' $HOME/.conky/conky/scripts/1_accu_ger/first_days
+    sed -i -e 's/&deg.*$//g' -e 's/<\/a>.*$//g' -e 's/<\/span>.*$//g' -e 's/">.*$//g' $HOME/.conky/conky/scripts/1_accu_ger/first_days
+    sed -i -e 's/Mo$/MONTAG/' -e 's/Di$/DIENSTAG/' -e 's/Mi$/MITTWOCH/' -e 's/Do$/DONNERSTAG/' -e 's/Fr$/FREITAG/' -e 's/Sa$/SAMSTAG/' -e 's/So$/SONNTAG/' $HOME/.conky/conky/scripts/1_accu_ger/first_days
+    sed -i -e 's/&#246\;/ö/g' -e 's/&#228\;/ä/g' -e 's/&#252\;/ü/g' -e 's/&#196\;/Ä/g' -e 's/&#214\;/Ö/g' -e 's/&#220\;/Ü/g' -e 's/&#223\;/ß/g' $HOME/.conky/conky/scripts/1_accu_ger/first_days
+    for (( i=2; i<=22; i+=5 ))
+	  do
+          image=$(sed -n "${i}"p $HOME/.conky/conky/scripts/1_accu_ger/first_days)
+          echo $(test_image $image) >> $HOME/.conky/conky/scripts/1_accu_ger/first_days
+	  done
+	j=1
+	for (( i=2; i<=22; i+=5 ))
+	  do
+	      cp $HOME/.conky/conky/scripts/1_accu_ger/Forecast_Images/$(sed -n ${i}p $HOME/.conky/conky/scripts/1_accu_ger/first_days).png $HOME/.conky/conky/scripts/1_accu_ger/$j.png
+	      ((j++))
+	  done
+fi
+
+#Next 5 days
+if [[ -s $HOME/.conky/conky/scripts/1_accu_ger/last_days_raw ]]; then
+	
+	sed -i '/.feed-controls/,/\.feed-tabs/!d' $HOME/.conky/conky/scripts/1_accu_ger/last_days_raw
+    egrep -i 'href="#"|icon i-|large-temp|small-temp|temp-label|"cond"' $HOME/.conky/conky/scripts/1_accu_ger/last_days_raw > $HOME/.conky/conky/scripts/1_accu_ger/last_days
+    sed -i -e 's/&#246\;/ö/g' -e 's/&#228\;/ä/g' -e 's/&#252\;/ü/g' -e 's/&#196\;/Ä/g' -e 's/&#214\;/Ö/g' -e 's/&#220\;/Ü/g' -e 's/&#223\;/ß/g' $HOME/.conky/conky/scripts/1_accu_ger/first_days
+    sed -i -e '/icon/s/-. //g' -e 's/^.*icon i-//g' -e 's/^.*large-temp">//g' -e 's/^.*small-temp">\///g' -e 's/^.*"cond">//g' -e 's/^.*href="#">//g' -e 's/^.*"temp-label tonight ">//g' $HOME/.conky/conky/scripts/1_accu_ger/last_days
+    sed -i -e 's/&deg.*$//g' -e 's/<\/a>.*$//g' -e 's/<\/span>.*$//g' -e 's/">.*$//g' $HOME/.conky/conky/scripts/1_accu_ger/last_days
+    sed -i -e 's/Mo$/MONTAG/' -e 's/Di$/DIENSTAG/' -e 's/Mi$/MITTWOCH/' -e 's/Do$/DONNERSTAG/' -e 's/Fr$/FREITAG/' -e 's/Sa$/SAMSTAG/' -e 's/So$/SONNTAG/' $HOME/.conky/conky/scripts/1_accu_ger/last_days
+    sed -i -e 's/&#246\;/ö/g' -e 's/&#228\;/ä/g' -e 's/&#252\;/ü/g' -e 's/&#196\;/Ä/g' -e 's/&#214\;/Ö/g' -e 's/&#220\;/Ü/g' -e 's/&#223\;/ß/g' $HOME/.conky/conky/scripts/1_accu_ger/last_days
+    for (( i=2; i<=22; i+=5 ))
+	  do
+          image=$(sed -n "${i}"p $HOME/.conky/conky/scripts/1_accu_ger/last_days)
+          echo $(test_image $image) >> $HOME/.conky/conky/scripts/1_accu_ger/last_days
+	  done
+	j=6
+	for (( i=2; i<=22; i+=5 ))
+	  do
+	      cp $HOME/.conky/conky/scripts/1_accu_ger/Forecast_Images/$(sed -n ${i}p $HOME/.conky/conky/scripts/1_accu_ger/last_days).png $HOME/.conky/conky/scripts/1_accu_ger/$j.png
+	      ((j++))
+	  done
+fi
+
+kill -CONT $(pidof conky)
