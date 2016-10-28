@@ -67,9 +67,9 @@ conky.config = {
 
   -- Imlib2 image cache size, in bytes. Defaults to 4MiB. Increase this value if
   -- you use $image lots. Set to 0 to disable the image cache.
-  imlib_cache_size=0,
+  -- imlib_cache_size=16,
   -- Interval (in seconds) to flush Imlib2 cache.
-  --imlib_cache_flush_interval=900,
+  -- imlib_cache_flush_interval=900,
 
   -- Use the Xdbe extension? (eliminates flicker)
   -- It is highly reco${color}mmended to use own window with this one
@@ -155,9 +155,9 @@ ${hr 2}
 # CPU
 \
 ${goto 40}${cpugraph 50,1720 0000ff ff0000 -t}
-${goto 40}${font LED_Mono:size=16}CPU: ${texeci 2 sensors | grep 'CPU Temperature' | cut -c23-24}°C\
+${goto 40}${font LED_Mono:size=16}CPU:\
 ${exec cat /proc/cpuinfo | grep 'processor' | wc -l > /home/alex/.conky/conky/scripts/cpu.tmp}\
-${if_existing /home/alex/.conky/conky/cpu.tmp 4}\
+${if_existing /home/alex/.conky/conky/scripts/cpu.tmp 4}\
 ${goto 170}${font} 0: ${color2}${texeci 2 sensors | grep 'Core 0' | cut -c18-19}°C ${color dodgerblue3}${cpubar cpu1 5,200}${color2} ${cpu cpu1}%${color}\
 ${goto 560}${font} 1: ${color2}${texeci 2 sensors | grep 'Core 1' | cut -c18-19}°C ${color dodgerblue3}${cpubar cpu2 5,200}${color2} ${cpu cpu2}%${color}\
 ${goto 950}${font} 2: ${color2}${texeci 2 sensors | grep 'Core 2' | cut -c18-19}°C ${color dodgerblue3}${cpubar cpu3 5,200}${color2} ${cpu cpu3}%${color}\

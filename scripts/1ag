@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #put your Accuweather address here
-address="http://www.accuweather.com/de/de/konstanz/78467/weather-forecast/134478"
+address="http://www.accuweather.com/de/de/konstanz/78467/weather-forecast/134478_pc"
 
 loc_id=$(echo $address|sed 's/\/weather-forecast.*$//'|sed 's/^.*\///')
 last_number=$(echo $address|sed 's/^.*\///')
