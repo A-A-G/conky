@@ -101,7 +101,7 @@ test_image () {
 
 
 kill -STOP $(pidof conky)
-killall wget
+killall wget &> /dev/null
 
 curr_addr="$(echo $address|sed 's/weather-forecast.*$//')"current-weather/"$last_number"
 wget -o /dev/null -q -O $HOME/.conky/conky/scripts/1_accu_ger/curr_cond_raw "$curr_addr"
