@@ -104,13 +104,13 @@ kill -STOP $(pidof conky)
 killall wget
 
 curr_addr="$(echo $address|sed 's/weather-forecast.*$//')"current-weather/"$last_number"
-wget -O $HOME/.conky/conky/scripts/1_accu_ger/curr_cond_raw "$curr_addr"
+wget -o /dev/null -q -O $HOME/.conky/conky/scripts/1_accu_ger/curr_cond_raw "$curr_addr"
 
 addr1="$(echo $address|sed 's/weather-forecast.*$//')"daily-weather-forecast/"$last_number"
-wget -O $HOME/.conky/conky/scripts/1_accu_ger/first_days_raw "$addr1"
+wget -o /dev/null -q -O $HOME/.conky/conky/scripts/1_accu_ger/first_days_raw "$addr1"
 
 addr2="$addr1"?day=6
-wget -O $HOME/.conky/conky/scripts/1_accu_ger/last_days_raw "$addr2"
+wget -o /dev/null -q -O $HOME/.conky/conky/scripts/1_accu_ger/last_days_raw "$addr2"
 
 rm $HOME/.conky/conky/scripts/1_accu_ger/*.png
 
