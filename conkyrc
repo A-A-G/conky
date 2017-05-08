@@ -1,3 +1,12 @@
+require 'io'
+
+function pre_exec(cmd)
+    local handle = io.popen(cmd)
+    local output = handle:read("*a")
+    handle:close()
+    return output
+end
+
 conky.config = {
   ---------- Begin Window Settings
   own_window=true,
@@ -81,7 +90,7 @@ conky.config = {
   update_interval=1
 }
 
-conky.text = [[
+conky.text = pre_exec("cat /proc/cpuinfo | grep 'processor' | wc -l > /home/alex/.conky/conky/scripts/cpu.tmp") .. [[
 ${texeci 222 bash /home/alex/.conky/conky/scripts/1ag}\
 \
 # Weather images
@@ -156,7 +165,7 @@ ${hr 2}
 \
 ${goto 40}${cpugraph 50,1720 0000ff ff0000 -t}
 ${goto 40}${font LED_Mono:size=16}CPU:\
-${exec cat /proc/cpuinfo | grep 'processor' | wc -l > /home/alex/.conky/conky/scripts/cpu.tmp}\
+\
 ${if_existing /home/alex/.conky/conky/scripts/cpu.tmp 4}\
 ${goto 170}${font} 0: ${color2}${texeci 2 sensors | grep 'Core 0' | cut -c18-19}°C ${color dodgerblue3}${cpubar cpu1 5,200}${color2} ${cpu cpu1}%${color}\
 ${goto 560}${font} 1: ${color2}${texeci 2 sensors | grep 'Core 1' | cut -c18-19}°C ${color dodgerblue3}${cpubar cpu2 5,200}${color2} ${cpu cpu2}%${color}\
@@ -164,14 +173,14 @@ ${goto 950}${font} 2: ${color2}${texeci 2 sensors | grep 'Core 2' | cut -c18-19}
 ${goto 1340}${font} 3: ${color2}${texeci 2 sensors | grep 'Core 3' | cut -c18-19}°C ${color dodgerblue3}${cpubar cpu4 5,200}${color2} ${cpu cpu4}%${color}\
 ${endif}\
 ${if_existing /home/alex/.conky/conky/scripts/cpu.tmp 8}\
-${goto 145}${font} 0: ${color2}${execi 2 sensors | grep 'Core 0' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu1 5,50}${color2} ${cpu cpu1}%${color}\
-${goto 340}${font} 1: ${color2}${execi 2 sensors | grep 'Core 1' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu2 5,50}${color2} ${cpu cpu2}%${color}\
-${goto 535}${font} 2: ${color2}${execi 2 sensors | grep 'Core 2' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu3 5,50}${color2} ${cpu cpu3}%${color}\
-${goto 730}${font} 3: ${color2}${execi 2 sensors | grep 'Core 3' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu4 5,50}${color2} ${cpu cpu4}%${color}\
-${goto 925}${font} 4: ${color2}${execi 2 sensors | grep 'Core 0' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu5 5,50}${color2} ${cpu cpu5}%${color}\
-${goto 1120}${font} 5: ${color2}${execi 2 sensors | grep 'Core 1' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu6 5,50}${color2} ${cpu cpu6}%${color}\
-${goto 1315}${font} 6: ${color2}${execi 2 sensors | grep 'Core 2' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu7 5,50}${color2} ${cpu cpu7}%${color}\
-${goto 1510}${font} 7: ${color2}${execi 2 sensors | grep 'Core 3' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu8 5,50}${color2} ${cpu cpu8}%${color}\
+${goto 145}${font} 0: ${color2}${texeci 2 sensors | grep 'Core 0' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu1 5,50}${color2} ${cpu cpu1}%${color}\
+${goto 340}${font} 1: ${color2}${texeci 2 sensors | grep 'Core 1' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu2 5,50}${color2} ${cpu cpu2}%${color}\
+${goto 535}${font} 2: ${color2}${texeci 2 sensors | grep 'Core 2' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu3 5,50}${color2} ${cpu cpu3}%${color}\
+${goto 730}${font} 3: ${color2}${texeci 2 sensors | grep 'Core 3' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu4 5,50}${color2} ${cpu cpu4}%${color}\
+${goto 925}${font} 4: ${color2}${texeci 2 sensors | grep 'Core 0' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu5 5,50}${color2} ${cpu cpu5}%${color}\
+${goto 1120}${font} 5: ${color2}${texeci 2 sensors | grep 'Core 1' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu6 5,50}${color2} ${cpu cpu6}%${color}\
+${goto 1315}${font} 6: ${color2}${texeci 2 sensors | grep 'Core 2' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu7 5,50}${color2} ${cpu cpu7}%${color}\
+${goto 1510}${font} 7: ${color2}${texeci 2 sensors | grep 'Core 3' | cut -c16-17}°C ${color dodgerblue3}${cpubar cpu8 5,50}${color2} ${cpu cpu8}%${color}\
 ${endif}\
 \
 # Memory
@@ -223,7 +232,7 @@ ${hr 2}\
 \
 ${voffset -250}\
 ${goto 650}${color slate grey}${font LED Mono:size=14}${rss http://www.spiegel.de/schlagzeilen/index.rss 1 feed_title}${color}${font LED Mono:size=8}
-${execpi 60 /home/alex/.conky/conky/scripts/rss_spiegel.pl}${font}
+${texecpi 60 /home/alex/.conky/conky/scripts/rss_spiegel.pl}${font}
 \
 # SYS
 \
@@ -233,14 +242,14 @@ ${goto 1200}${color slate grey}$sysname $kernel $machine ${alignr 39}${color sla
 ${goto 1200}${color slate grey}Intel® Core™ i5-4670K @ ${color2}${freq_g cpu0} GHz${color}${alignr 39}${color slate grey}Processes: ${color2}$processes
 ${goto 1200}${color slate grey}Load: ${color2}$loadavg ${alignr 39}${color slate grey}Running:   ${color2}$running_processes
 # nvidia plugin needed
-${goto 1200}${color slate grey}${exec lspci | grep VGA | sed -e 's/^.*\[//g' -e 's/].*$//g' -e 's/ Rev.*$//g'}: ${color}GPU: ${color2}${nvidia gpufreq} Mhz ${color}CPU: ${color2}${nvidia memfreq} Mhz ${color7}${alignr 39}${nvidia temp}°C${color}
+${goto 1200}${color slate grey}${texeci 86400 lspci | grep VGA | sed -e 's/^.*\[//g' -e 's/].*$//g' -e 's/ Rev.*$//g'}: ${color}GPU: ${color2}${nvidia gpufreq} Mhz ${color}CPU: ${color2}${nvidia memfreq} Mhz ${color7}${alignr 39}${nvidia temp}°C${color}
 ${goto 1200}${voffset -10}${hr 1}${voffset -10}
 \
 # RSS 2
 \
 ${goto 1200}${color slate grey}${font LED Mono:size=14}${rss https://www.archlinux.org/feeds/news/ 1 feed_title}${color}${font LED Mono:size=8}
-${execpi 60 /home/alex/.conky/conky/scripts/rss_arch.pl}${font}
+${texecpi 60 /home/alex/.conky/conky/scripts/rss_arch.pl}${font}
 ${voffset -170}
 #${goto 1550}${color slate grey}${font LED Mono:size=14}${rss https://www.subcentral.de/index.php?page=Feed&type=RSS2&boardID=182 1 feed_title}${color}${font LED Mono:size=8}
 ${goto 1550}${color slate grey}${font LED Mono:size=14}SubCentral.de${color}${font LED Mono:size=8}
-${execpi 60 /home/alex/.conky/conky/scripts/rss_subcentral.pl}${font} ]]
+${texecpi 60 /home/alex/.conky/conky/scripts/rss_subcentral.pl}${font} ]]
