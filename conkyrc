@@ -76,9 +76,9 @@ conky.config = {
 
   -- Imlib2 image cache size, in bytes. Defaults to 4MiB. Increase this value if
   -- you use $image lots. Set to 0 to disable the image cache.
-  -- imlib_cache_size=16,
+  -- imlib_cache_size=,
   -- Interval (in seconds) to flush Imlib2 cache.
-  -- imlib_cache_flush_interval=900,
+  imlib_cache_flush_interval=600,
 
   -- Use the Xdbe extension? (eliminates flicker)
   -- It is highly reco${color}mmended to use own window with this one
@@ -91,7 +91,7 @@ conky.config = {
 }
 
 conky.text = pre_exec("cat /proc/cpuinfo | grep 'processor' | wc -l > /home/alex/.conky/conky/scripts/cpu.tmp") .. [[
-${texeci 222 bash /home/alex/.conky/conky/scripts/1ag}\
+${texeci 600 bash /home/alex/.conky/conky/scripts/1ag}\
 \
 # Weather images
 \
