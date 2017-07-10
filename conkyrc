@@ -242,14 +242,15 @@ ${goto 1200}${color slate grey}$sysname $kernel $machine ${alignr 39}${color sla
 ${goto 1200}${color slate grey}Intel® Core™ i5-4670K @ ${color2}${freq_g cpu0} GHz${color}${alignr 39}${color slate grey}Processes: ${color2}$processes
 ${goto 1200}${color slate grey}Load: ${color2}$loadavg ${alignr 39}${color slate grey}Running:   ${color2}$running_processes
 # nvidia plugin needed
-${goto 1200}${color slate grey}${texeci 86400 lspci | grep VGA | sed -e 's/^.*\[//g' -e 's/].*$//g' -e 's/ Rev.*$//g'}: ${color}GPU: ${color2}${nvidia gpufreq} Mhz ${color}CPU: ${color2}${nvidia memfreq} Mhz ${color7}${alignr 39}${nvidia temp}°C${color}
+${goto 1200}${color slate grey}${texeci 86400 lspci | grep VGA | sed -e 's/^.*\[//g' -e 's/].*$//g' -e 's/ Rev.*$//g'}: ${color}GPU: ${color2}${nvidia gpufreq} Mhz ${color}MEM: ${color2}${texeci 1 nvidia-smi -a | grep -m 1 Total | awk '{print $3}'} MiB
+${goto 1200}${color slate grey}MFreq: ${color2}${nvidia memfreq} Mhz ${alignr 59}${color slate grey}Temp: ${color7}${nvidia temp} °C ${alignr 54}${color slate grey}Load: ${color7}${texeci 1 nvidia-smi -a | grep Gpu | awk '{print $3}'} % ${alignr 39}${color slate grey}Mem: ${color7}${texeci 1 nvidia-smi -a | grep -E 'Memory.*%' | awk '{print $3}'} %${color}
 ${goto 1200}${voffset -10}${hr 1}${voffset -10}
 \
 # RSS 2
 \
 ${goto 1200}${color slate grey}${font LED Mono:size=14}${rss https://www.archlinux.org/feeds/news/ 1 feed_title}${color}${font LED Mono:size=8}
 ${texecpi 60 /home/alex/.conky/conky/scripts/rss_arch.pl}${font}
-${voffset -170}
+${voffset -155}
 #${goto 1550}${color slate grey}${font LED Mono:size=14}${rss https://www.subcentral.de/index.php?page=Feed&type=RSS2&boardID=182 1 feed_title}${color}${font LED Mono:size=8}
 ${goto 1550}${color slate grey}${font LED Mono:size=14}SubCentral.de${color}${font LED Mono:size=8}
 ${texecpi 60 /home/alex/.conky/conky/scripts/rss_subcentral.pl}${font} ]]

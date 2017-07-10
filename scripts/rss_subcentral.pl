@@ -15,7 +15,7 @@ use HTML::Entities; #german
 # Configs
 
 $rssPage = "https://www.subcentral.de/index.php?page=Feed&type=RSS2&boardID=182";
-$numLines = 10;
+$numLines = 8;
 $maxTitleLenght = 60;
 $goto = '${goto 1550}';
 
