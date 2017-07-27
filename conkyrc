@@ -243,7 +243,7 @@ ${goto 1200}${color slate grey}Intel® Core™ i5-4670K @ ${color2}${freq_g cpu0
 ${goto 1200}${color slate grey}Load: ${color2}$loadavg ${alignr 39}${color slate grey}Running:   ${color2}$running_processes
 # nvidia plugin needed
 ${goto 1200}${color slate grey}${texeci 86400 lspci | grep VGA | sed -e 's/^.*\[//g' -e 's/].*$//g' -e 's/ Rev.*$//g'}: ${color}GPU: ${color2}${nvidia gpufreq} Mhz ${color}MEM: ${color2}${texeci 1 nvidia-smi -a | grep -m 1 Total | awk '{print $3}'} MiB
-${goto 1200}${color slate grey}MFreq: ${color2}${nvidia memfreq} Mhz ${alignr 59}${color slate grey}Temp: ${color7}${nvidia temp} °C ${alignr 54}${color slate grey}Load: ${color7}${texeci 1 nvidia-smi -a | grep Gpu | awk '{print $3}'} % ${alignr 39}${color slate grey}Mem: ${color7}${texeci 1 nvidia-smi -a | grep -E 'Memory.*%' | awk '{print $3}'} %${color}
+${goto 1200}${color slate grey}MFreq: ${color2}${nvidia memfreq} Mhz ${alignr 59}${color slate grey}Temp: ${color7}${nvidia temp} °C ${alignr 54}${color slate grey}Load: ${color7}${texeci 1 nvidia-smi -a | grep -m 1 Gpu | awk '{print $3}'} % ${alignr 39}${color slate grey}Mem: ${color7}${texeci 1 nvidia-smi -a | grep -E 'Memory.*%' | awk '{print $3}'} %${color}
 ${goto 1200}${voffset -10}${hr 1}${voffset -10}
 \
 # RSS 2
