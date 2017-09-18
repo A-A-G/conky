@@ -117,7 +117,7 @@ rm $HOME/.conky/conky/scripts/1_accu_ger/*.png
 #current conditions
 if [[ -s $HOME/.conky/conky/scripts/1_accu_ger/curr_cond_raw ]]; then
     sed -i '/detail-now/,/Astronomie <span class/!d' $HOME/.conky/conky/scripts/1_accu_ger/curr_cond_raw
-    egrep -i '"cond"|icon i-|large-temp|small-temp|wind-point|"wind"|Luftfeuchtigkeit|Luftdruck|UV-Index|Wolkendecke|Ceiling|Taupunkt|Sichtweite|Dauer|Sonnenaufgang:|Sonnenuntergang:|Mondaufgang:|Monduntergang:' $HOME/.conky/conky/scripts/1_accu_ger/curr_cond_raw > $HOME/.conky/conky/scripts/1_accu_ger/curr_cond
+    egrep -i '"cond"|icon i-|large-temp|small-temp|wind-point|"wind"><strong>|Luftfeuchtigkeit|Luftdruck|UV-Index|Wolkendecke|Ceiling|Taupunkt|Sichtweite|Dauer|Sonnenaufgang:|Sonnenuntergang:|Mondaufgang:|Monduntergang:' $HOME/.conky/conky/scripts/1_accu_ger/curr_cond_raw > $HOME/.conky/conky/scripts/1_accu_ger/curr_cond
     sed -i -e 's/&#246\;/ö/g' -e 's/&#228\;/ä/g' -e 's/&#252\;/ü/g' -e 's/&#196\;/Ä/g' -e 's/&#214\;/Ö/g' -e 's/&#220\;/Ü/g' -e 's/&#223\;/ß/g' $HOME/.conky/conky/scripts/1_accu_ger/curr_cond
     sed -i -e 's/^.*<strong>//g' -e 's/^.*<span>//g' -e 's/^.*icon i-//g' -e 's/^.*large-temp">//g' -e 's/^.*<\/em> //g' -e 's/^.*"cond">//g' -e 's/^.*wind-point //g' $HOME/.conky/conky/scripts/1_accu_ger/curr_cond
     sed -i -e 's/">.*$//g' -e 's/&deg.*$//g' -e 's/<\/span>.*$//g' -e 's/&#.*$//g' -e 's/ &darr.*$//g' -e 's/ &uarr.*$//g' -e 's/<\/strong>.*$//g' $HOME/.conky/conky/scripts/1_accu_ger/curr_cond
