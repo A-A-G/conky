@@ -84,6 +84,10 @@ conky.config = {
   -- It is highly reco${color}mmended to use own window with this one
   -- so double buffer won't be so big.
   double_buffer=true,
+  
+  -- extend text size
+  text_buffer_size = 256,
+  max_user_text = 32768,
 
   -- ---------- End Miscellaneous Section
 
@@ -237,6 +241,10 @@ ${if_existing /proc/net/route enp0s25}\
 ${goto 40}${upspeedgraph enp0s25 50,835 0000ff ff0000 -t}${goto 925}${downspeedgraph enp0s25 50,835 0000ff ff0000 -t}
 ${goto 40}${font LED_Mono:size=16}Network: $font}${goto 170}${color5}Up: ${color2}${upspeed enp0s25}${goto 350}${color5}Sent: ${color2}${totalup enp0s25}${color5}${goto 925}Down: ${color2}${downspeed enp0s25}${color5}${goto 1100}Received: ${color2}${totaldown enp0s25}${color}\
 ${endif}
+${if_existing /proc/net/route enp0s31f6}\
+${goto 40}${upspeedgraph enp0s31f6 50,835 0000ff ff0000 -t}${goto 925}${downspeedgraph enp0s31f6 50,835 0000ff ff0000 -t}
+${goto 40}${font LED_Mono:size=16}Network: $font}${goto 170}${color5}Up: ${color2}${upspeed enp0s31f6}${goto 350}${color5}Sent: ${color2}${totalup enp0s31f6}${color5}${goto 925}Down: ${color2}${downspeed enp0s31f6}${color5}${goto 1100}Received: ${color2}${totaldown enp0s31f6}${color}\
+${endif}
 ${hr 2}
 \
 # Proceses
@@ -252,11 +260,12 @@ ${goto 40}${color2}${top_mem name 7}${color}${goto 200}${top_mem mem_res 7} ${go
 ${goto 40}${color2}${top_mem name 8}${color}${goto 200}${top_mem mem_res 8} ${goto 350}${color2}${top name 8}${color}${goto 510}${top cpu 8} %
 ${goto 40}${color2}${top_mem name 9}${color}${goto 200}${top_mem mem_res 9} ${goto 350}${color2}${top name 9}${color}${goto 510}${top cpu 9} %
 ${goto 40}${color2}${top_mem name 10}${color}${goto 200}${top_mem mem_res 10} ${goto 350}${color2}${top name 10}${color}${goto 510}${top cpu 10} %
+${voffset 5}\
 ${hr 2}\
 \
 # RSS 1
 \
-${voffset -245}\
+${voffset -250}\
 ${goto 650}${color slate grey}${font LED Mono:size=14}${rss http://www.spiegel.de/schlagzeilen/index.rss 1 feed_title}${color}${font LED Mono:size=8}
 ${texecpi 60 /home/alex/.conky/conky/scripts/rss_spiegel.pl}${font}
 \
@@ -264,9 +273,9 @@ ${texecpi 60 /home/alex/.conky/conky/scripts/rss_spiegel.pl}${font}
 \
 ${voffset -265}\
 ${goto 1200}${font Open Sans:Bold:size=14}${color dodgerblue3}SYSTEM ${voffset -4}${hr 5}$color${font}
-${goto 1200}${color slate grey}$sysname $kernel $machine ${alignr 39}${color slate grey}Uptime: ${color2}$uptime${color}
-${goto 1200}${color slate grey}Intel® Core™ i5-4670K @ ${color2}${freq_g cpu0} GHz${color}${alignr 39}${color slate grey}Processes: ${color2}$processes
-${goto 1200}${color slate grey}Load: ${color2}$loadavg ${alignr 39}${color slate grey}Running:   ${color2}$running_processes
+${goto 1200}${color slate grey}$sysname $kernel $machine ${alignr 39}${color slate grey}Hostname: ${color2}$nodename
+${goto 1200}${color slate grey}Intel® Core™ i5-4670K @ ${color2}${freq_g cpu0} GHz${color}${alignr 39}${color slate grey}Uptime: ${color2}$uptime${color}
+${goto 1200}${color slate grey}Processes: ${color2}$processes  ${color slate grey}Load: ${color2}$loadavg ${alignr 39}${color slate grey}Running:   ${color2}$running_processes
 # nvidia plugin needed
 ${goto 1200}${color slate grey}${texeci 86400 lspci | grep VGA | sed -e 's/^.*\[//g' -e 's/].*$//g' -e 's/ Rev.*$//g'}: ${color}GPU: ${color2}${nvidia gpufreq} Mhz ${color}MEM: ${color2}${texeci 1 nvidia-smi -a | grep -m 1 Total | awk '{print $3}'} MiB
 ${goto 1200}${color slate grey}MFreq: ${color2}${nvidia memfreq} Mhz ${alignr 59}${color slate grey}Temp: ${color7}${nvidia temp} °C ${alignr 54}${color slate grey}Load: ${color7}${texeci 1 nvidia-smi -a | grep -m 1 Gpu | awk '{print $3}'} % ${alignr 39}${color slate grey}Mem: ${color7}${texeci 1 nvidia-smi -a | grep -E 'Memory.*%' | awk '{print $3}'} %${color}
@@ -274,9 +283,10 @@ ${goto 1200}${voffset -10}${hr 1}${voffset -10}
 \
 # RSS 2
 \
-${goto 1200}${color slate grey}${font LED Mono:size=14}${rss https://www.archlinux.org/feeds/news/ 1 feed_title}${color}${font LED Mono:size=8}
+${goto 1200}${color slate grey}${font LED_Mono:size=14}${rss https://www.archlinux.org/feeds/news/ 1 feed_title}${color}${font LED_Mono:size=8}
 ${texecpi 60 /home/alex/.conky/conky/scripts/rss_arch.pl}${font}
 ${voffset -155}
-#${goto 1550}${color slate grey}${font LED Mono:size=14}${rss https://www.subcentral.de/index.php?page=Feed&type=RSS2&boardID=182 1 feed_title}${color}${font LED Mono:size=8}
+# ${goto 1550}${color slate grey}${font LED Mono:size=14}${rss https://www.subcentral.de/index.php?page=Feed&type=RSS2&boardID=182 1 feed_title}${color}${font LED Mono:size=8}
 ${goto 1550}${color slate grey}${font LED Mono:size=14}SubCentral.de${color}${font LED Mono:size=8}
-${texecpi 60 /home/alex/.conky/conky/scripts/rss_subcentral.pl}${font} ]]
+${texecpi 60 /home/alex/.conky/conky/scripts/rss_subcentral.pl}${font}
+]]
