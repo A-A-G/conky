@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Base script from https://forums.bunsenlabs.org/viewtopic.php?id=189
+# Modified by A-A-G
+
 #put your Accuweather address here
 address="http://www.accuweather.com/de/de/konstanz/78467/weather-forecast/134478_pc"
 
