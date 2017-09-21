@@ -256,7 +256,7 @@ ${hr 2}\
 \
 # RSS 1
 \
-${voffset -250}\
+${voffset -245}\
 ${goto 650}${color slate grey}${font LED Mono:size=14}${rss http://www.spiegel.de/schlagzeilen/index.rss 1 feed_title}${color}${font LED Mono:size=8}
 ${texecpi 60 /home/alex/.conky/conky/scripts/rss_spiegel.pl}${font}
 \
