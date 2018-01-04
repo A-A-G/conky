@@ -63,6 +63,13 @@ conky.config = {
   border_outer_margin=0,
   ---------- End Borders Secton
   
+  ---------- Begin Bars & Graphs
+  default_graph_width = 835,
+  default_graph_height = 50,
+  show_graph_scale = false,
+  show_graph_range = false,
+  ---------- End Borders Secton
+  
   ---------- Begin Miscellaneous Section
   background=true,
 
@@ -249,10 +256,17 @@ ${color cyan}${hr 2}${color}
 ${voffset -8}${goto 40}${font LED_Mono:size=16}Memory:${font}\
 ${goto 185} ${color5}Used: ${color2}$mem ${color}/ ${color2}$memmax${color}\
 ${goto 485} ${color5}Free: ${color2}$memeasyfree${color}\
-${alignr 39}${font LED_Mono:size=16}${memperc}%${font}
-${voffset -8}${goto 40}${memgraph 50,1720 0000ff ff0000 -t}
+${alignr 925}${font LED_Mono:size=16}${memperc}%${font}
+${voffset -8}${goto 40}${memgraph 50,835 0000ff ff0000 -t}
 ${voffset -20}\
 ${color cyan}${hr 2}${color}
+\
+# GPU
+\
+${voffset -95}${goto 925}${font LED_Mono:size=16}GPU:${font}\
+${goto 1200}${color5}Load: ${color2}${texeci 1 nvidia-smi -a | grep -m 1 Gpu | awk '{print $3}'} %${goto 1350}${color5}Memory: ${color2}${texeci 1 nvidia-smi -a | grep -E 'Memory.*%' | awk '{print $3}'} %${color}\
+${alignr 39}${font LED_Mono:size=16}${texeci 1 nvidia-smi -a | grep -m 1 Gpu | awk '{print $3}'} %${font}
+${voffset -9}${goto 925}${execigraph 1 "nvidia-smi -a | grep -m 1 Gpu | awk '{print $3}'" 50,835 0000ff ff0000 -t}
 \
 # Proceses
 \
@@ -297,10 +311,34 @@ ${voffset -155}
 ${goto 1550}${color slate grey}${font LED Mono:size=14}SubCentral.de${color}${font LED Mono:size=8}
 ${texecpi 60 /home/alex/.conky/conky/scripts/rss_subcentral.pl}${font}
 \
-# Bitcoin & Stock
+# Coins
 \
-${font Open Sans:Bold:size=14}${color dodgerblue3}BTC Price${color}${font}
-${color slate grey}Coinbase.com: ${color}${execi 1 php /home/alex/.conky/conky/scripts/btc.php}${goto 220}${color2}EUR ${color}${execi 1 php /home/alex/.conky/conky/scripts/btc.php USD} ${color2}USD 
+${font Open Sans:Bold:size=14}${color dodgerblue3}Coins${color}${font}
+\
+# BTC
+${color slate grey}Coinbase.com:${color}${texeci 1 php /home/alex/.conky/conky/scripts/btc.php}${goto 220}${color2}EUR ${color}${texeci 1 php /home/alex/.conky/conky/scripts/btc.php USD} ${color2}USD 
 # ${texeci 60 curl -s 'https://api.coinbase.com/v2/prices/EUR/spot?' | jq '.data[0].amount' | sed 's/\./,/g' | sed 's/\"//g'} EUR
-${voffset 8}${color slate grey}Bitcoin.de ${texeci 60 curl -s 'https://bitcoinapi.de/widget/current-btc-price?size=1&type=dark&bgcolor=000000' > /home/alex/.conky/conky/scripts/btc.png ; convert -crop 87x34+8+3 btc.png btc.png}${image /home/alex/.conky/conky/scripts/btc.png -p 120,1160 -s 87x34 -n -f 60}${goto 220}${color2}EUR
+${voffset 8}${color slate grey}Bitcoin.de: ${texeci 60 curl -s 'https://bitcoinapi.de/widget/current-btc-price?size=1&type=dark&bgcolor=000000' > /home/alex/.conky/conky/scripts/btc.png ; convert -crop 87x34+8+3 /home/alex/.conky/conky/scripts/btc.png /home/alex/.conky/conky/scripts/btc.png}\
+${if_existing /home/alex/.conky/conky/scripts/btc.png}\
+  ${image /home/alex/.conky/conky/scripts/btc.png -p 120,1160 -s 87x34 -n -f 60}${goto 220}${color2}EUR${color}\
+${endif}\
+\
+# HitBTC
+${voffset -55}\
+#${goto 400}${font Open Sans:Bold:size=14}${color dodgerblue3}HitBTC${color}${font}
+${goto 400}${color slate grey}Ripple (XRP):   ${color}${texeci 1 curl -s https://api.hitbtc.com/api/2/public/ticker/XRPBTC | jq -r '.last'}${color2} BTC    ${color}${texeci 1 curl -s https://api.hitbtc.com/api/2/public/ticker/XRPUSDT | jq -r '.last' | sed -re 's/([0-9]+\.[0-9]{2})[0-9]+/\1/g'} ${color2} USD
+${goto 400}${color slate grey}Thron (TRX):    ${color}${texeci 1 curl -s https://api.hitbtc.com/api/2/public/ticker/TRXBTC | jq -r '.last'}${color2} BTC    ${color}${texeci 1 curl -s https://api.hitbtc.com/api/2/public/ticker/TRXUSD | jq -r '.last' | sed -re 's/([0-9]+\.[0-9]{2})[0-9]+/\1/g'} ${color2} USD
+${goto 400}${color slate grey}BTC Cash (BCH): ${color}${texeci 1 curl -s https://api.hitbtc.com/api/2/public/ticker/BCHBTC | jq -r '.last'}${color2}   BTC ${color}${texeci 1 curl -s https://api.hitbtc.com/api/2/public/ticker/BCHUSD | jq -r '.last' | sed -re 's/([0-9]+\.[0-9]{2})[0-9]+/\1/g'} ${color2} USD
+${goto 400}${color slate grey}BTC Gold (BTG): ${color}${texeci 1 curl -s https://api.hitbtc.com/api/2/public/ticker/BTGBTC | jq -r '.last'}${color2}   BTC  ${color}${texeci 1 curl -s https://api.hitbtc.com/api/2/public/ticker/BTGUSD | jq -r '.last' | sed -re 's/([0-9]+\.[0-9]{2})[0-9]+/\1/g'} ${color2} USD
+\
+# Stock
+\
+${voffset -90}\
+${goto 950}${font Open Sans:Bold:size=14}${color dodgerblue3}Stock${color}${font}
+${goto 950}${color slate grey}db x-trackers DAX: ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -s OXDX.L}${color2} EUR ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -p -s OXDX.L}${color2} %
+${goto 950}${color slate grey}Deka DAX:          ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -s EL4A.DE}${color2} EUR ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -p -s EL4A.DE}${color2} %
+${goto 950}${color slate grey}ComStage S&P 500:  ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -s C012.DE}${color2} EUR ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -p -s C012.DE}${color2} %
+${voffset -85}\
+${goto 1400}${color slate grey}iShares MDAX:  ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -s EXS3.DE}${color2} EUR ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -p -s EXS3.DE}${color2} %
+${goto 1400}${color slate grey}iShares TecDAX: ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -s EXS2.DE}${color2} EUR ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -p -s EXS2.DE}${color2} %
 ]]
