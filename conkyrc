@@ -335,7 +335,7 @@ ${goto 400}${color slate grey}BTC Gold (BTG): ${color}${texeci 1 curl -s https:/
 \
 ${voffset -90}\
 ${goto 950}${font Open Sans:Bold:size=14}${color dodgerblue3}Stock${color}${font}
-${goto 950}${color slate grey}db x-trackers DAX: ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -s OXDX.L}${color2} EUR ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -p -s OXDX.L}${color2} %
+${goto 950}${color slate grey}db x-trackers DAX: ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -s DBXD.F}${color2} EUR ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -p -s DBXD.F}${color2} %
 ${goto 950}${color slate grey}Deka DAX:          ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -s EL4A.DE}${color2} EUR ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -p -s EL4A.DE}${color2} %
 ${goto 950}${color slate grey}ComStage S&P 500:  ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -s C012.DE}${color2} EUR ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -p -s C012.DE}${color2} %
 ${voffset -85}\
