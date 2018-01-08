@@ -15,7 +15,7 @@ use Encode;
 ############################
 # Configs
 
-$rssPage = "http://www.spiegel.de/schlagzeilen/index.rss";
+$rssPage = "http://www.spiegel.de/schlagzeilen/tops/index.rss";
 $numLines = 18;
 $maxTitleLenght = 90;
 $goto = '${goto 650}';
