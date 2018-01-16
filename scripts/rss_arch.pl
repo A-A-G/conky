@@ -38,6 +38,8 @@ foreach $line (@pageLines) {
 		$lineCat =~ s/\<\/title\>.*//;
 		$lineCat =~ s/\[.{4,25}\]$//; # strip no-fun data ( [from blaaa] )
 		$lineCat = substr($lineCat, 0, $maxTitleLenght);
+		$lineCat =~ s/#/\\#/;
+		$lineCat =~ s/\$/\\#/;
 		print "$goto$lineCat \n";
 		$x++;
 	}

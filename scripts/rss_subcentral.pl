@@ -41,6 +41,8 @@ foreach $line (@pageLines) {
 			$lineCat =~ s/\[.{4,25}\]$//; # strip no-fun data ( [from blaaa] )
 			$lineCat = substr($lineCat, 0, $maxTitleLenght);
 			$lineCat = decode_entities($lineCat);
+			$lineCat =~ s/#/\\#/;
+			$lineCat =~ s/\$/\\#/;
 			print "$goto$lineCat \n";
 			$x++;
 		}

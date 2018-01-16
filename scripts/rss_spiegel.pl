@@ -43,6 +43,8 @@ foreach $line (@pageLines) {
 			$lineCat = substr($lineCat, 0, $maxTitleLenght);
 			$lineCat = decode_entities($lineCat);
 			$lineCat = encode('UTF-8', $lineCat);
+			$lineCat =~ s/#/\\#/;
+			$lineCat =~ s/\$/\\#/;
 			print "$goto$lineCat \n";
 			$x++;
 		}
