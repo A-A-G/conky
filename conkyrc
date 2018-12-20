@@ -334,12 +334,12 @@ ${goto 380}${color slate grey}Ethereum (ETH): ${color}${texeci 1 curl -s https:/
 \
 ${voffset -90}\
 ${goto 960}${font Open Sans:Bold:size=14}${color dodgerblue3}Stock${color}${font}
-${goto 960}${color slate grey}db x-trackers DAX: ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -s DBXD.DE}${color2} EUR ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -p -s DBXD.DE}${color2} %
-${goto 960}${color slate grey}Deka DAX:          ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -s EL4A.DE}${color2} EUR ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -p -s EL4A.DE}${color2} %
-${goto 960}${color slate grey}ComStage S&P 500:  ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -s C012.DE}${color2} EUR ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -p -s C012.DE}${color2} %
+${goto 960}${color slate grey}db x-trackers DAX: ${color}${texeci 3600 /home/alex/.conky/conky/scripts/stocks.sh -s DBXD.DE}${color2} EUR ${color}${texeci 3600 /home/alex/.conky/conky/scripts/stocks.sh -p -s DBXD.DE}${color2} %
+${goto 960}${color slate grey}Deka DAX:          ${color}${texeci 3600 /home/alex/.conky/conky/scripts/stocks.sh -s EL4A.DE}${color2} EUR ${color}${texeci 3600 /home/alex/.conky/conky/scripts/stocks.sh -p -s EL4A.DE}${color2} %
+${goto 960}${color slate grey}ComStage S&P 500:  ${color}${texeci 3600 /home/alex/.conky/conky/scripts/stocks.sh -s C012.DE}${color2} EUR ${color}${texeci 3600 /home/alex/.conky/conky/scripts/stocks.sh -p -s C012.DE}${color2} %
 ${voffset -85}\
-${goto 1395}${color slate grey}iShares MDAX: ${color}${alignr 0}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -s EXS3.DE}${color2} EUR ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -p -s EXS3.DE}${color2} %
-${goto 1395}${color slate grey}iShares TecDAX: ${color}${alignr 0}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -s EXS2.DE}${color2} EUR ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -p -s EXS2.DE}${color2} %
-${goto 1395}${color slate grey}ComStage 1 MDAX: ${color}${alignr 0}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -s E907.DE}${color2} EUR ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -p -s E907.DE}${color2} %
-${goto 1395}${color slate grey}ComStage 1 TecDAX: ${color}${alignr 0}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -s E908.DE}${color2} EUR ${color}${texeci 60 /home/alex/.conky/conky/scripts/stocks.sh -p -s E908.DE}${color2} %
+${goto 1395}${color slate grey}iShares MDAX: ${color}${alignr 0}${texeci 3600 /home/alex/.conky/conky/scripts/stocks.sh -s EXS3.DE}${color2} EUR ${color}${texeci 3600 /home/alex/.conky/conky/scripts/stocks.sh -p -s EXS3.DE}${color2} %
+${goto 1395}${color slate grey}iShares TecDAX: ${color}${alignr 0}${texeci 3600 /home/alex/.conky/conky/scripts/stocks.sh -s EXS2.DE}${color2} EUR ${color}${texeci 3600 /home/alex/.conky/conky/scripts/stocks.sh -p -s EXS2.DE}${color2} %
+${goto 1395}${color slate grey}ComStage 1 MDAX: ${color}${alignr 0}${texeci 3600 /home/alex/.conky/conky/scripts/stocks.sh -s E907.DE}${color2} EUR ${color}${texeci 3600 /home/alex/.conky/conky/scripts/stocks.sh -p -s E907.DE}${color2} %
+${goto 1395}${color slate grey}ComStage 1 TecDAX: ${color}${alignr 0}${texeci 3600 /home/alex/.conky/conky/scripts/stocks.sh -s E908.DE}${color2} EUR ${color}${texeci 3600 /home/alex/.conky/conky/scripts/stocks.sh -p -s E908.DE}${color2} %
 ]]
